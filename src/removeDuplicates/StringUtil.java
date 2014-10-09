@@ -6,8 +6,13 @@ import org.slf4j.LoggerFactory;
 public class StringUtil {
 	private final static Logger logger = LoggerFactory.getLogger(StringUtil.class);
 
+	/**
+	 * this is an O(n^2) algorithm which removes all duplicated chars in a string
+	 * @param str
+	 * @return the result string with duplicated chars removed
+	 */
 	public static String removeDuplicates(String str) {
-		char[] strChars=str.toCharArray();
+		char[] strChars = str.toCharArray();
 		if (strChars == null) {
 			return null;
 		}
@@ -19,15 +24,16 @@ public class StringUtil {
 		for (int i = 1; i < len; ++i) {
 			int j;
 			for (j = 0; j < tail; ++j) {
-				if (strChars[i] == strChars[j]) break;
+				if (strChars[i] == strChars[j])
+					break;
 			}
 			if (j == tail) {
 				strChars[tail] = strChars[i];
 				++tail;
 			}
 		}
-		//strChars[tail] = 0;
-		logger.debug("tail= "+tail);
+		// strChars[tail] = 0;
+		logger.debug("tail= " + tail);
 		return new String(strChars).substring(0, tail);
 	}
 

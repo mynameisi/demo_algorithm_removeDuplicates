@@ -20,7 +20,7 @@ public class RemoveDuplicates {
 			BufferedReader br = new BufferedReader(new FileReader(new File("test/TestStrings")));
 			String line;
 			while ((line = br.readLine()) != null) {
-				logger.debug(line+" ====== "+StringUtil.removeDuplicates(line));
+				logger.debug(line+"   ---->   "+StringUtil.removeDuplicates(line));
 			}
 			br.close();
 
