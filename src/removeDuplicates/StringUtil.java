@@ -38,6 +38,40 @@ public class StringUtil {
 	}
 
 	/**
+	 * this is an O(n) algorithm which removes all duplicated chars in a string</br>
+	 * However, since extra buffer is used, more space is used for this algorithm
+	 * can shifting operating be incorporated into this algorithm?
+	 * @param str
+	 * @return the result string with duplicated chars removed
+	 */
+	public static String removeDuplicatesExtraBuffer(String str) {
+		char[] strChars = str.toCharArray();
+		if (strChars == null) {
+			return null;
+		}
+		int len = strChars.length;
+		if (len < 2) {
+			return null;
+		}
+		boolean[] hit = new boolean[256];
+		for (int i = 0; i < 256; ++i) {
+			hit[i] = false;
+		}
+		hit[strChars[0]] = true;
+		int tail = 1;
+		for (int i = 1; i < len; ++i) {
+			if (!hit[strChars[i]]) {
+				strChars[tail] = strChars[i];
+				++tail;
+				hit[strChars[i]] = true;
+			}
+		}
+		// strChars[tail] = 0;
+		logger.debug("tail= " + tail);
+		return new String(strChars).substring(0, tail);
+	}
+
+	/**
 	 * 这个方法判断输入的字符串str中有没有重复的字符
 	 * 前提：str中的字符只能属于ascii码表
 	 * 
